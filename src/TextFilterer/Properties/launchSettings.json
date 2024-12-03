@@ -1,8 +1,16 @@
 {
   "profiles": {
-    "TextFilterer": {
+    "Alice in Wonderland": {
       "commandName": "Project",
       "commandLineArgs": "--inputFile Assets/AliceInWonderland.txt"
+    },
+    "Rain in Spain": {
+      "commandName": "Project",
+      "commandLineArgs": "--inputFile Assets/RainInSpain.txt"
+    },
+    "Truman Show": {
+      "commandName": "Project",
+      "commandLineArgs": "--inputFile Assets/TrumanShow.txt"
     }
   }
 }
