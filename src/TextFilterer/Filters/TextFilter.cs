@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
+using TextFilterer.Extensions;
 using TextFilterer.TextMatchers;
 
 namespace TextFilterer.Filters;
@@ -37,7 +38,7 @@ public partial class TextFilter(IEnumerable<ITextMatcher> textMatchers) : ITextF
             {
                 if (!filteredWord)
                 {
-                    stringBuilder.Append(part).Append(' ');
+                    stringBuilder.AppendWithTrailingSpace(part);
                 }
 
                 continue;
@@ -50,7 +51,7 @@ public partial class TextFilter(IEnumerable<ITextMatcher> textMatchers) : ITextF
             }
 
             this.filteredWords[part] = false;
-            stringBuilder.Append(part).Append(' ');
+            stringBuilder.AppendWithTrailingSpace(part);
         }
 
         // remove the final trailing space before returning
