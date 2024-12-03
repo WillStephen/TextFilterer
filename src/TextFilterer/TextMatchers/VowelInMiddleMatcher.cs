@@ -1,4 +1,6 @@
-﻿namespace TextFilterer.TextMatchers;
+﻿using TextFilterer.Extensions;
+
+namespace TextFilterer.TextMatchers;
 
 /// <inheritdoc/>
 public class VowelInMiddleMatcher : ITextMatcher
@@ -24,7 +26,7 @@ public class VowelInMiddleMatcher : ITextMatcher
 
         IEnumerable<char> middleChars = GetMiddleOfString(text);
 
-        return middleChars.Any(c => IsVowel(c));
+        return middleChars.Any(c => c.IsVowel());
     }
 
     private static IEnumerable<char> GetMiddleOfString(string text)
@@ -41,6 +43,4 @@ public class VowelInMiddleMatcher : ITextMatcher
             yield return text[indexOfMiddleChar - 1];
         }
     }
-
-    public static bool IsVowel(char c) => vowels.Contains(c);
 }
