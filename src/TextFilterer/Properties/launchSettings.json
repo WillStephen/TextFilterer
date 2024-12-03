@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TextFilterer": {
+      "commandName": "Project",
+      "commandLineArgs": "--inputFile Assets/AliceInWonderland.txt"
+    }
+  }
+}
