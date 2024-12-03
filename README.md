@@ -4,18 +4,22 @@
 This program filters text from a given file and displays the result.
 
 ## How to run
-This is a command-line program that takes one argument: `inputFile`, which should be a path to a file containing some text. There are some text files included in the `Assets` folder.
+This is a command-line program that takes one argument: `inputFile`, which should be a path to a file containing some text. There are some text files included in the `src/TextFilterer/Assets` folder.
 
 For example, in a terminal in the same directory as your executable, you can run:
 ```
 .\TextFilterer --inputFile Assets\AliceInWonderland.txt
 ```
 
+There is a launch profile (in `src/TextFilterer/Properties/launchSettings.json`) included for each text file in the `src/TextFilterer/Assets` folder. In Visual Studio these can be selected in the launch profiles dropdown.
+
+You can also run the project from the command line using `dotnet`. From a terminal in the `src/TextFilterer` directory, run e.g. `dotnet run --launch-profile "Alice in Wonderland"`.
+
 ## Future improvements
 There are plenty of things that could be added to this project to improve it. In no particular order:
 
 ### Logging
-The program does log results to the console, but we could do a lot more here - for exampl, we could log:
+The program does log results to the console, but we could do a lot more here - for example, we could log:
 
 - progress updates during the filtering - useful for large files
 - the number of words filtered out and the number remaining after filtering
