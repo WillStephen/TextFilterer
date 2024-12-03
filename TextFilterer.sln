@@ -14,6 +14,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B7BB0BE-3813-44CF-8070-2B79D53FF9C7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{C1FDDCB0-2F6D-4B35-8759-13E68F3E19C0}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\AliceInWonderland.txt = Assets\AliceInWonderland.txt
+		Assets\RainInSpain.txt = Assets\RainInSpain.txt
+		Assets\TrumanShow.txt = Assets\TrumanShow.txt
 	EndProjectSection
 EndProject
 Global
@@ -37,6 +45,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8FB6EF05-0618-47AB-960A-B3C3C7F473B8} = {97BE5F2C-7A72-48FA-9601-544385A4A9DC}
 		{4410324B-2D74-4F69-AA6B-648B36495594} = {BA38B9A7-F698-4576-868C-476AEAA16B0C}
+		{C1FDDCB0-2F6D-4B35-8759-13E68F3E19C0} = {9B7BB0BE-3813-44CF-8070-2B79D53FF9C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DB1F566-720E-48E0-8BD8-BE15CFA48374}
