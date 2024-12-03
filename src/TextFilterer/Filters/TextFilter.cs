@@ -3,9 +3,11 @@ using TextFilterer.TextMatchers;
 
 namespace TextFilterer.Filters;
 
-public class TextFilter(IEnumerable<ITextMatcher> textFilters) : ITextFilter
+public class TextFilter(IEnumerable<ITextMatcher> textMatchers) : ITextFilter
 {
-    private readonly IReadOnlyCollection<ITextMatcher> textFilters = textFilters.ToList();
+    private readonly IReadOnlyCollection<ITextMatcher> textMatchers = textMatchers.ToList();
+
+    private readonly Dictionary<string, bool> filteredWords = [];
 
     public string FilterText(string text)
     {
@@ -15,14 +17,24 @@ public class TextFilter(IEnumerable<ITextMatcher> textFilters) : ITextFilter
 
         foreach (string part in parts)
         {
-            if (this.textFilters.Any(tm => tm.Matches(part)))
+            if (this.filteredWords.TryGetValue(part, out bool filteredWord))
             {
+                if (!filteredWord)
+                {
+                    stringBuilder.Append(part).Append(' ');
+                }
+
                 continue;
             }
 
-            stringBuilder
-                .Append(part)
-                .Append(' ');
+            if (this.textMatchers.Any(tm => tm.Matches(part)))
+            {
+                this.filteredWords[part] = true;
+                continue;
+            }
+
+            this.filteredWords[part] = false;
+            stringBuilder.Append(part).Append(' ');
         }
 
         // remove the final trailing space before returning

@@ -9,14 +9,9 @@ internal class Program
     {
         IServiceProvider serviceProvider = GetServiceProvider();
 
-        ITextFilter textFilter = serviceProvider.GetRequiredService<ITextFilter>();
-        ITextFileRepository textFileRepository = serviceProvider.GetRequiredService<ITextFileRepository>();
+        IFileTextFilter fileTextFilter = serviceProvider.GetRequiredService<IFileTextFilter>();
 
-        await foreach (string line in textFileRepository.GetLinesAsync("Assets/AliceInWonderland.txt"))
-        {
-            string filteredLine = textFilter.FilterText(line);
-            Console.WriteLine(filteredLine);
-        }
+        await fileTextFilter.FilterAndOutputAsync("Assets/AliceInWonderland.txt");
     }
 
     private static ServiceProvider GetServiceProvider()
@@ -25,6 +20,7 @@ internal class Program
 
         serviceCollection.AddTransient<ITextFilter, TextFilter>();
         serviceCollection.AddTransient<ITextFileRepository, TextFileRepository>();
+        serviceCollection.AddTransient<IFileTextFilter, FileTextFilter>();
 
         serviceCollection.AddTransient<ITextMatcher, VowelInMiddleMatcher>();
         serviceCollection.AddTransient<ITextMatcher>(
