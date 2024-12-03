@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using TextFilterer.TextMatchers;
 
-namespace TextFilterer;
+namespace TextFilterer.Filters;
 
-public class Filterer(IEnumerable<ITextMatcher> textFilters) : ITextFilterer
+public class TextFilter(IEnumerable<ITextMatcher> textFilters) : ITextFilter
 {
     private readonly IReadOnlyCollection<ITextMatcher> textFilters = textFilters.ToList();
 
