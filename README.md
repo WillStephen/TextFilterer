@@ -29,6 +29,9 @@ To speed up the process, we could split the filtering using the [Task Parallel L
 ### Higher-level tests
 The solution includes unit tests, but adding some integration tests would be a good next step (by 'integration test' I mean a test that checks how all the classes operate together, possibly using e.g. [System.IO.Abstractions](https://github.com/TestableIO/System.IO.Abstractions) to mock the file system). The test could create a file, run the program without any mocking, and check that the printed output is equal to a known expected value.
 
+### File validation
+Currently the program doesn't catch exceptions thrown if, for example, the input file doesn't exist or the user doesn't have permission to access it. This means the program prints the stack trace to the console and exits, which isn't very user-friendly. Deliberate file validation, with appropriate error messages, would be an improvement.
+
 ### More command-line args, or configuration
 Right now, the program preserves the punctuation of the input file. So, for the included file `RainInSpain.txt`, the contents `The rain in Spain stays mainly in the plain.` become simply `.` when filtered.
 
