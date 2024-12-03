@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TextFilterer.Filters;
+using TextFilterer.Outputters;
 using TextFilterer.Repositories;
 using TextFilterer.TextMatchers;
 
@@ -21,6 +22,7 @@ internal class Program
         serviceCollection.AddTransient<ITextFilter, TextFilter>();
         serviceCollection.AddTransient<ITextFileRepository, TextFileRepository>();
         serviceCollection.AddTransient<IFileTextFilter, FileTextFilter>();
+        serviceCollection.AddTransient<IResultOutputter, ConsoleResultOutputter>();
 
         serviceCollection.AddTransient<ITextMatcher, VowelInMiddleMatcher>();
         serviceCollection.AddTransient<ITextMatcher>(
