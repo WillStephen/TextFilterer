@@ -1,4 +1,5 @@
 ﻿namespace TextFilterer.Filters;
+
 /// <summary>
 /// Removes words from text.
 /// </summary>

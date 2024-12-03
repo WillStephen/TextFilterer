@@ -5,8 +5,6 @@ namespace TextFilterer.TextMatchers;
 /// <inheritdoc/>
 public class VowelInMiddleMatcher : ITextMatcher
 {
-    private readonly static char[] vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
-
     /// <summary>
     /// Determines whether or not the input <paramref name="text"/> contains a vowel in the middle.
     /// </summary>

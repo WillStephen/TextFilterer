@@ -7,7 +7,7 @@ namespace TextFilterer.Filters;
 
 /// <inheritdoc/>
 /// <summary>
-/// Create a new instance of the <see cref="TextFilterer"/> class.
+/// Create a new instance of the <see cref="TextFilter"/> class.
 /// </summary>
 /// <param name="textMatchers">A set of matchers used to filter words out.</param>
 public partial class TextFilter(IEnumerable<ITextMatcher> textMatchers) : ITextFilter
