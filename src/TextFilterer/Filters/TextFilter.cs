@@ -34,28 +34,40 @@ public partial class TextFilter(IEnumerable<ITextMatcher> textMatchers) : ITextF
 
         foreach (string part in parts)
         {
-            if (this.filteredWords.TryGetValue(part, out bool filteredWord))
-            {
-                if (!filteredWord)
-                {
-                    stringBuilder.AppendWithTrailingSpace(part);
-                }
-
-                continue;
-            }
-
-            if (this.textMatchers.Any(tm => tm.Matches(part)))
-            {
-                this.filteredWords[part] = true;
-                continue;
-            }
-
-            this.filteredWords[part] = false;
-            stringBuilder.AppendWithTrailingSpace(part);
+            AddPartIfNotFiltered(part, stringBuilder);
         }
 
         // remove the final trailing space before returning
         return stringBuilder.ToString().TrimEnd();
+    }
+
+    private void AddPartIfNotFiltered(string part, StringBuilder stringBuilder)
+    {
+        // check for punctuation
+        if (NonWordsRegex().IsMatch(part))
+        {
+            stringBuilder.AppendWithTrailingSpace(part);
+            return;
+        }
+
+        if (this.filteredWords.TryGetValue(part, out bool filteredWord))
+        {
+            if (!filteredWord)
+            {
+                stringBuilder.AppendWithTrailingSpace(part);
+            }
+
+            return;
+        }
+
+        if (this.textMatchers.Any(tm => tm.Matches(part)))
+        {
+            this.filteredWords[part] = true;
+            return;
+        }
+
+        this.filteredWords[part] = false;
+        stringBuilder.AppendWithTrailingSpace(part);
     }
 
     /// <summary>
