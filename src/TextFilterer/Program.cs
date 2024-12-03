@@ -1,11 +1,11 @@
 ﻿using TextFilterer;
-using TextFilterer.TextFilters;
+using TextFilterer.TextMatchers;
 
 Filterer textFilterer = new Filterer(
     [
-        new VowelInMiddleFilter(),
-        new LengthBelowNCharsFilter(3),
-        new TextContainsSubstringFilter("t", StringComparison.OrdinalIgnoreCase)
+        new VowelInMiddleMatcher(),
+        new LengthBelowNCharsMatcher(3),
+        new TextContainsSubstringMatcher("t", StringComparison.OrdinalIgnoreCase)
     ]);
 
 string filteredText = textFilterer.FilterText("The cat sat on the mat");

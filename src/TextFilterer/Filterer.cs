@@ -1,11 +1,11 @@
 ﻿using System.Text;
-using TextFilterer.TextFilters;
+using TextFilterer.TextMatchers;
 
 namespace TextFilterer;
 
-public class Filterer(IEnumerable<ITextFilter> textFilters) : ITextFilterer
+public class Filterer(IEnumerable<ITextMatcher> textFilters) : ITextFilterer
 {
-    private readonly IReadOnlyCollection<ITextFilter> textFilters = textFilters.ToList();
+    private readonly IReadOnlyCollection<ITextMatcher> textFilters = textFilters.ToList();
 
     public string FilterText(string text)
     {
@@ -15,7 +15,7 @@ public class Filterer(IEnumerable<ITextFilter> textFilters) : ITextFilterer
 
         foreach (string part in parts)
         {
-            if (this.textFilters.Any(tm => tm.ShouldFilter(part)))
+            if (this.textFilters.Any(tm => tm.Matches(part)))
             {
                 continue;
             }

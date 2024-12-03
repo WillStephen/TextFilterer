@@ -1,9 +1,9 @@
-﻿using TextFilterer.TextFilters;
+﻿using TextFilterer.TextMatchers;
 
-namespace TextFilterer.UnitTests.TextFilters;
+namespace TextFilterer.UnitTests.TextMatchers;
 
 [TestClass]
-public class LengthBelowNCharsFilterTests
+public class LengthBelowNCharsMatcherTests
 {
     [TestMethod]
     [DataRow(0)]
@@ -13,30 +13,30 @@ public class LengthBelowNCharsFilterTests
     {
         // Act + Assert
         ArgumentException exception = Assert.ThrowsException<ArgumentException>(
-            () => new LengthBelowNCharsFilter(numberOfChars));
+            () => new LengthBelowNCharsMatcher(numberOfChars));
     }
 
     [TestMethod]
-    public void ShouldFilter_EmptyStringAndNumberOfCharsOne_ReturnsTrue()
+    public void Matches_EmptyStringAndNumberOfCharsOne_ReturnsTrue()
     {
         // Arrange
-        LengthBelowNCharsFilter sut = new(numberOfChars: 1);
+        LengthBelowNCharsMatcher sut = new(numberOfChars: 1);
 
         // Act
-        bool result = sut.ShouldFilter(string.Empty);
+        bool result = sut.Matches(string.Empty);
 
         // Assert
         Assert.IsTrue(result);
     }
 
     [TestMethod]
-    public void ShouldFilter_OneCharacterStringAndNumberOfCharsOne_ReturnsFalse()
+    public void Matches_OneCharacterStringAndNumberOfCharsOne_ReturnsFalse()
     {
         // Arrange
-        LengthBelowNCharsFilter sut = new(numberOfChars: 1);
+        LengthBelowNCharsMatcher sut = new(numberOfChars: 1);
 
         // Act
-        bool result = sut.ShouldFilter(string.Empty);
+        bool result = sut.Matches(string.Empty);
 
         // Assert
         Assert.IsTrue(result);
@@ -44,13 +44,13 @@ public class LengthBelowNCharsFilterTests
 
     [TestMethod]
     [DynamicData(nameof(TestStrings))]
-    public void ShouldFilter_InputSameLengthAsNumberOfChars_ReturnsFalse(string text)
+    public void Matches_InputSameLengthAsNumberOfChars_ReturnsFalse(string text)
     {
         // Arrange
-        LengthBelowNCharsFilter sut = new(numberOfChars: text.Length);
+        LengthBelowNCharsMatcher sut = new(numberOfChars: text.Length);
 
         // Act
-        bool result = sut.ShouldFilter(text);
+        bool result = sut.Matches(text);
 
         // Assert
         Assert.IsFalse(result);
@@ -58,13 +58,13 @@ public class LengthBelowNCharsFilterTests
 
     [TestMethod]
     [DynamicData(nameof(TestStrings))]
-    public void ShouldFilter_InputLengthGreaterThanNumberOfChars_ReturnsFalse(string text)
+    public void Matches_InputLengthGreaterThanNumberOfChars_ReturnsFalse(string text)
     {
         // Arrange
-        LengthBelowNCharsFilter sut = new(numberOfChars: text.Length - 1);
+        LengthBelowNCharsMatcher sut = new(numberOfChars: text.Length - 1);
 
         // Act
-        bool result = sut.ShouldFilter(text);
+        bool result = sut.Matches(text);
 
         // Assert
         Assert.IsFalse(result);
@@ -72,13 +72,13 @@ public class LengthBelowNCharsFilterTests
 
     [TestMethod]
     [DynamicData(nameof(TestStrings))]
-    public void ShouldFilter_InputLengthLessThanNumberOfChars_ReturnsTrue(string text)
+    public void Matches_InputLengthLessThanNumberOfChars_ReturnsTrue(string text)
     {
         // Arrange
-        LengthBelowNCharsFilter sut = new(numberOfChars: text.Length + 1);
+        LengthBelowNCharsMatcher sut = new(numberOfChars: text.Length + 1);
 
         // Act
-        bool result = sut.ShouldFilter(text);
+        bool result = sut.Matches(text);
 
         // Assert
         Assert.IsTrue(result);

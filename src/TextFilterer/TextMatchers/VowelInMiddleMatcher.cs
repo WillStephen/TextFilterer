@@ -1,10 +1,10 @@
-﻿namespace TextFilterer.TextFilters;
+﻿namespace TextFilterer.TextMatchers;
 
-public class VowelInMiddleFilter : ITextFilter
+public class VowelInMiddleMatcher : ITextMatcher
 {
     private readonly static char[] vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
 
-    public bool ShouldFilter(string text)
+    public bool Matches(string text)
     {
         if (text.Length == 0)
         {

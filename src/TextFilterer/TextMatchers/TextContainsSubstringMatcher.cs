@@ -1,11 +1,11 @@
-﻿namespace TextFilterer.TextFilters;
+﻿namespace TextFilterer.TextMatchers;
 
-public class TextContainsSubstringFilter : ITextFilter
+public class TextContainsSubstringMatcher : ITextMatcher
 {
     private readonly string substring;
     private readonly StringComparison comparisonType;
 
-    public TextContainsSubstringFilter(
+    public TextContainsSubstringMatcher(
         string substring,
         StringComparison comparisonType = StringComparison.OrdinalIgnoreCase)
     {
@@ -18,5 +18,5 @@ public class TextContainsSubstringFilter : ITextFilter
         this.comparisonType = comparisonType;
     }
 
-    public bool ShouldFilter(string text) => text.Contains(this.substring, this.comparisonType);
+    public bool Matches(string text) => text.Contains(this.substring, this.comparisonType);
 }

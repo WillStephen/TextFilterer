@@ -1,17 +1,17 @@
-﻿using TextFilterer.TextFilters;
+﻿using TextFilterer.TextMatchers;
 
-namespace TextFilterer.UnitTests.TextFilters;
+namespace TextFilterer.UnitTests.TextMatchers;
 
 [TestClass]
-public class VowelInMiddleFilterTests
+public class VowelInMiddleMatcherTests
 {
-    private readonly VowelInMiddleFilter sut = new();
+    private readonly VowelInMiddleMatcher sut = new();
 
     [TestMethod]
-    public void ShouldFilter_EmptyString_ReturnsFalse()
+    public void Matches_EmptyString_ReturnsFalse()
     {
         // Act
-        bool result = this.sut.ShouldFilter(string.Empty);
+        bool result = this.sut.Matches(string.Empty);
 
         // Assert
         Assert.IsFalse(result);
@@ -23,10 +23,10 @@ public class VowelInMiddleFilterTests
     [DataRow("?")]
     [DataRow("Practice")]
     [DataRow("菠萝")]
-    public void ShouldFilter_StringWithoutVowelsInMiddle_ReturnsFalse(string text)
+    public void Matches_StringWithoutVowelsInMiddle_ReturnsFalse(string text)
     {
         // Act
-        bool result = this.sut.ShouldFilter(text);
+        bool result = this.sut.Matches(text);
 
         // Assert
         Assert.IsFalse(result);
@@ -43,10 +43,10 @@ public class VowelInMiddleFilterTests
     [DataRow("COW")]
     [DataRow("Bug")]
     [DataRow("BUG")]
-    public void ShouldFilter_OddLengthStringWithVowelInMiddle_ReturnsTrue(string text)
+    public void Matches_OddLengthStringWithVowelInMiddle_ReturnsTrue(string text)
     {
         // Act
-        bool result = this.sut.ShouldFilter(text);
+        bool result = this.sut.Matches(text);
 
         // Assert
         Assert.IsTrue(result);
@@ -63,10 +63,10 @@ public class VowelInMiddleFilterTests
     [DataRow("FAVOUR")]
     [DataRow("Rung")]
     [DataRow("RUNG")]
-    public void ShouldFilter_EvenLengthStringWithVowelInMiddle_ReturnsTrue(string text)
+    public void Matches_EvenLengthStringWithVowelInMiddle_ReturnsTrue(string text)
     {
         // Act
-        bool result = this.sut.ShouldFilter(text);
+        bool result = this.sut.Matches(text);
 
         // Assert
         Assert.IsTrue(result);

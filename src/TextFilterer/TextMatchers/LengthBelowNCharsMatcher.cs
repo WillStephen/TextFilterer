@@ -1,10 +1,10 @@
-﻿namespace TextFilterer.TextFilters;
+﻿namespace TextFilterer.TextMatchers;
 
-public class LengthBelowNCharsFilter : ITextFilter
+public class LengthBelowNCharsMatcher : ITextMatcher
 {
     private readonly int numberOfChars;
 
-    public LengthBelowNCharsFilter(int numberOfChars)
+    public LengthBelowNCharsMatcher(int numberOfChars)
     {
         if (numberOfChars <= 0)
         {
@@ -14,5 +14,5 @@ public class LengthBelowNCharsFilter : ITextFilter
         this.numberOfChars = numberOfChars;
     }
 
-    public bool ShouldFilter(string text) => text.Length < this.numberOfChars;
+    public bool Matches(string text) => text.Length < this.numberOfChars;
 }
