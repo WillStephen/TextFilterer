@@ -7,7 +7,7 @@ public class TextContainsSubstringMatcher : ITextMatcher
     private readonly StringComparison comparisonType;
 
     /// <summary>
-    /// Create a new instance of the <see cref="TextFilterer"/> class.
+    /// Create a new instance of the <see cref="TextContainsSubstringMatcher"/> class.
     /// </summary>
     /// <param name="substring">The substring to search for within the input string.</param>
     /// <param name="comparisonType">

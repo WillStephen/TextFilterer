@@ -3,7 +3,6 @@
 /// <inheritdoc/>
 public class ConsoleResultOutputter : IResultOutputter
 {
-    private const ConsoleColor InfoColour = ConsoleColor.Green;
     private const ConsoleColor ResultTextColour = ConsoleColor.White;
 
     /// <summary>

@@ -10,7 +10,7 @@ public class FileTextFilter(
     IResultOutputter resultOutputter) : IFileTextFilter
 {
     private readonly ITextFileRepository textFileRepository = textFileRepository;
-    private readonly ITextFilter textFilterer = textFilter;
+    private readonly ITextFilter textFilter = textFilter;
     private readonly IResultOutputter resultOutputter = resultOutputter;
 
     /// <inheritdoc/>
@@ -18,7 +18,7 @@ public class FileTextFilter(
     {
         await foreach (string line in this.textFileRepository.GetLinesAsync(filename))
         {
-            string filteredLine = this.textFilterer.FilterText(line);
+            string filteredLine = this.textFilter.FilterText(line);
 
             this.resultOutputter.OutputLine(filteredLine);
         }
